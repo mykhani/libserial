@@ -31,6 +31,8 @@
 int main(int argc, char *argv[])
 {
 	int serial_dev;
+	int ret;
+	char data[256];
 
 	if (argc < 2) {
 		fprintf(stderr, "Please specify serial device to use \r\n");
@@ -51,6 +53,13 @@ int main(int argc, char *argv[])
 
 	while (1) {
 		serial_write(serial_dev, "Testing");
+		ret = serial_read(serial_dev, data, sizeof(data));
+		if (ret <= 0) {
+			printf("No data available \r\n");
+		} else {
+			printf("Serial data received:\r\n");
+			printf("%s\r\n", data);
+		}
 		sleep(1);
 	}
 }
