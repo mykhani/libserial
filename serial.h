@@ -32,6 +32,6 @@ int serial_open(const char *name);
 int serial_close(int fd);
 int serial_setup(int fd, int baudrate);
 int serial_write(int fd, const char *data);
-int serial_read(int fd);
+int serial_read(int fd, const char *data, int len);
 
 #endif

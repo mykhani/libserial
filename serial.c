@@ -68,8 +68,14 @@ int serial_write(int fd, const char *data)
 	return write(fd, data, strlen(data));
 }
 
-int serial_read(int fd)
+int serial_read(int fd, const char *buff, int len)
 {
+	int ret;
+
+	ret = read(fd, buff, len);
+	if (ret < 0) {
+		perror("Unable to read serial: %s\r\n", strerror(errno));
+	}
 }
 /* open the serial device, make sure it is not being used by any other program */
 int serial_open(const char *name)
